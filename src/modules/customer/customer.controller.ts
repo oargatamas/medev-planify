@@ -2,8 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { ApiController } from '../../shared/decorators/api.controller';
 
-@Controller('customer')
+@ApiController('customers')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 

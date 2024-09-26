@@ -2,8 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { PartnerService } from './partner.service';
 import { CreatePartnerDto } from './dto/create-partner.dto';
 import { UpdatePartnerDto } from './dto/update-partner.dto';
+import { ApiController } from '../../shared/decorators/api.controller';
 
-@Controller('partner')
+@ApiController('partners')
 export class PartnerController {
   constructor(private readonly partnerService: PartnerService) {}
 
