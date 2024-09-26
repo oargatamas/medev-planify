@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
 import { TourOffer } from '../../tour/entities/offer.entity';
+import { Document } from '../../document/entities/document.entity';
 
 @Entity('messages')
 export class Message extends BaseEntity{
@@ -12,4 +13,8 @@ export class Message extends BaseEntity{
 
   @ManyToOne(() => TourOffer, (offer) => offer.messages)
   offer: TourOffer;
+
+  @ManyToMany(() => Document)
+  @JoinTable()
+  documents: Document[];
 }

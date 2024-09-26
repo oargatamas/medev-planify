@@ -1,9 +1,10 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
 import { Price } from '../../../shared/entities/price.entity';
 import { Payment } from '../../payment/entities/payment.entity';
 import { OrderItem } from './item.entity';
 import { VatCode } from '../../../shared/entities/vat_code.entity';
+import { Document } from '../../document/entities/document.entity';
 
 @Entity('orders')
 export class Order extends BaseEntity{
@@ -20,4 +21,8 @@ export class Order extends BaseEntity{
 
   @OneToMany(() => OrderItem, (item) => item.order)
   items: OrderItem[];
+
+  @ManyToMany(() => Document)
+  @JoinTable()
+  documents: Document[];
 }
