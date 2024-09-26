@@ -1,5 +1,5 @@
 import { Country } from '../enums/countries.enum';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './base.entity';
 
 @Entity('vat_code')

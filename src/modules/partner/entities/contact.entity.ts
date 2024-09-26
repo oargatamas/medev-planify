@@ -1,7 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
 
-@Entity('partner_contacts')
 export class PartnerContact extends BaseEntity{
   @Column()
   email: string;
