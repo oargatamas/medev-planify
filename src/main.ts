@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { join } from 'path'
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder, SwaggerDocumentOptions } from '@nestjs/swagger';
+import * as fs from 'node:fs';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -24,7 +25,10 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/doc', app, document);
+  SwaggerModule.setup('api/docs', app, document, {
+    jsonDocumentUrl: 'api/docs/json',
+    yamlDocumentUrl: 'api/docs/yaml',
+  });
 
   await app.listen(port);
 }
