@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
-import { Customer } from '../../customer/entities/customer.entity';
+import { User } from '../../user/entities/user.entity';
 import { Order } from '../../order/entities/order.entity';
 import { Document } from '../../document/entities/document.entity';
 import { TourService } from './service.entity';
@@ -16,8 +16,8 @@ export class Tour extends BaseEntity{
   @Column()
   progress: number;
 
-  @ManyToOne(() => Customer, (customer) => customer.tours)
-  customer: Customer;
+  @ManyToOne(() => User, (user) => user.tours)
+  user: User;
 
   @OneToOne(() => Order)
   @JoinColumn()

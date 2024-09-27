@@ -2,8 +2,8 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
 import { Tour } from '../../tour/entities/tour.entity';
 
-@Entity('customers')
-export class Customer extends BaseEntity{
+@Entity('users')
+export class User extends BaseEntity{
   @Column()
   firstName: string;
 
@@ -22,6 +22,6 @@ export class Customer extends BaseEntity{
   @Column()
   lastLogin: Date;
 
-  @OneToMany(() => Tour, (tour) => tour.customer)
+  @OneToMany(() => Tour, (tour) => tour.user)
   tours: Tour[];
 }
