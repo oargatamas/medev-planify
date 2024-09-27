@@ -16,8 +16,14 @@ export class PartnerService extends UserService{
     this.partnerRepository = repository;
   }
 
-  create(createPartnerDto: CreatePartnerDto) {
-    return 'This action adds a new partner';
+  async create(createPartnerDto: CreatePartnerDto) {
+    const partner = new Partner({
+      ... await this.mapUserProps(createPartnerDto),
+      name: createPartnerDto.name,
+      contactType: createPartnerDto.contactType,
+      //Todo map partner contact ...
+    });
+    return this.partnerRepository.save(partner);
   }
 
   findAll() {

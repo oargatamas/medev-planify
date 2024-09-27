@@ -15,8 +15,14 @@ export class CustomerService extends UserService{
     this.customerRepository = repository;
   }
 
-  create(createCustomerDto: CreateCustomerDto) {
-    return 'This action adds a new user';
+  async create(createCustomerDto: CreateCustomerDto): Promise<Customer> {
+    const customer = new Customer({
+      ... await this.mapUserProps(createCustomerDto),
+      firstName: createCustomerDto.firstName,
+      lastName: createCustomerDto.lastName,
+      title: createCustomerDto.title,
+    });
+    return this.customerRepository.save(customer);
   }
 
   findAll() {

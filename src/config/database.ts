@@ -17,5 +17,6 @@ export default registerAs(
     entities: [
       __dirname + '/../**/*.entity{.ts,.js}',
     ],
+    logging: ['query', 'error'],
   }),
 );

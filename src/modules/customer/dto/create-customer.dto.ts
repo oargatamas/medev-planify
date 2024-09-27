@@ -1,8 +1,8 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { CreateUserDto } from '../../user/dto/create-user.dto';
 
 
-export class CreateCustomerDto extends PartialType(CreateUserDto){
+export class CreateCustomerDto extends CreateUserDto{
   @ApiProperty()
   firstName: string;
 
@@ -10,5 +10,5 @@ export class CreateCustomerDto extends PartialType(CreateUserDto){
   lastName: string;
 
   @ApiProperty()
-  title: string;
+  title: string;  // Todo change to enum
 }

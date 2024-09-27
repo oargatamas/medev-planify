@@ -4,7 +4,8 @@ import { CustomerService } from '../customer/customer.service';
 import { PartnerService } from '../partner/partner.service';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
-
+import { CreateCustomerDto } from '../customer/dto/create-customer.dto';
+import { CreatePartnerDto } from '../partner/dto/create-partner.dto';
 
 @Injectable()
 export class AuthService {
@@ -35,4 +36,14 @@ export class AuthService {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
+
+  async customerSignUp(signUpDto: CreateCustomerDto) {
+    await this.customerService.create(signUpDto);
+  }
+
+  async partnerSignUp(signUpDto: CreatePartnerDto) {
+    await this.partnerService.create(signUpDto);
+  }
+
+
 }
