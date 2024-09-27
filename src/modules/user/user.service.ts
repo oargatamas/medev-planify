@@ -1,39 +1,29 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { DataSource, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Customer } from '../customer/entities/customer.entity';
+import { Partner } from '../partner/entities/partner.entity';
 
-@Injectable()
-export class UserService {
-  private userService: Repository<User>;
 
-  constructor(dataSource: DataSource) {
-    this.userService = dataSource.getRepository(User);
+export abstract class UserService {
+  private userRepository: Repository<Customer | Partner>;
+
+  protected constructor(repository: Repository<Customer | Partner>) {
+
+    this.userRepository = repository;
   }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  findOneByUsername(emailOrUsername: string): Promise<User> {
+    return this.userRepository.findOneOrFail({
+      where: {
+        email: emailOrUsername,
+        username: emailOrUsername,
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all user`;
-  }
-
-  findOneByEmail(email: string): Promise<User | null> {
-    //return this.userService.findOneBy({ email });
-    const customer = new Customer();
-    customer.email = "tudomtom@gmail.com";
-    customer.passwordHash = "supersecretpasswordnotinplaintext"
-    return Promise.resolve(customer);
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
+  updatePassword(id: number, newPass: string) {
+    //Todo make the hash prior storing it.
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
 }

@@ -8,5 +8,6 @@ import { UserModule } from '../user/user.module';
   imports: [TourModule, UserModule],
   controllers: [CustomerController],
   providers: [CustomerService],
+  exports: [CustomerService],
 })
 export class CustomerModule {}

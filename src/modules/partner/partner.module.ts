@@ -8,5 +8,6 @@ import { UserModule } from '../user/user.module';
   imports: [MessageModule, UserModule],
   controllers: [PartnerController],
   providers: [PartnerService],
+  exports: [PartnerService],
 })
 export class PartnerModule {}

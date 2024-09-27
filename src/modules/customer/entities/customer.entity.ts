@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { Tour } from '../../tour/entities/tour.entity';
 import { User } from '../../user/entities/user.entity';
 
-@Entity('users')
+@Entity('customers')
 export class Customer extends User{
   @Column()
   firstName: string;
