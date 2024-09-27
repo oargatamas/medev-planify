@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
-import { User } from '../../user/entities/user.entity';
 import { Order } from '../../order/entities/order.entity';
 import { Document } from '../../document/entities/document.entity';
 import { TourService } from './service.entity';
