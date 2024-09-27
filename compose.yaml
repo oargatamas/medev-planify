@@ -10,6 +10,8 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "5432:5432"
 
   app:
     build:
@@ -26,12 +28,11 @@ services:
       - db
     volumes:
       - ./src:/app/src
-      - ./package.json:/app/package.json
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - "8080:8080"
     depends_on:
       - db
