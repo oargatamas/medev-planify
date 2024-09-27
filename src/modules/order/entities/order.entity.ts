@@ -3,7 +3,7 @@ import { BaseEntity } from '../../../shared/entities/base.entity';
 import { Price } from '../../../shared/entities/price.entity';
 import { Payment } from '../../payment/entities/payment.entity';
 import { OrderItem } from './item.entity';
-import { VatCode } from '../../../shared/entities/vat_code.entity';
+import { VatCode } from '../../../shared/entities/vat-code.entity';
 import { Document } from '../../document/entities/document.entity';
 
 @Entity('orders')

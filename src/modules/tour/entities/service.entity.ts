@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
-import { TourServiceType } from '../../../shared/enums/tour_service_type.enum';
+import { TourServiceType } from '../../../shared/enums/tour-service-type.enum';
 import { Tour } from './tour.entity';
 import { TourOffer } from './offer.entity';
 
