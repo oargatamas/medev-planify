@@ -8,12 +8,14 @@ import { TourModule } from './modules/tour/tour.module';
 import { UserModule } from './modules/user/user.module';
 import { PartnerModule } from './modules/partner/partner.module';
 import { CustomerModule } from './modules/customer/customer.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    AuthModule,
     TypeOrmModule.forRoot(databaseConfig()),
     TourModule,
     CustomerModule,
