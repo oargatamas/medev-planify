@@ -1,8 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../user/entities/user.entity';
 import { CustomerService } from '../customer/customer.service';
 import { PartnerService } from '../partner/partner.service';
+import * as bcrypt from 'bcrypt';
+import { UserService } from '../user/user.service';
 
 
 @Injectable()
@@ -14,20 +15,21 @@ export class AuthService {
   ) {}
 
   async customerSignIn(username: string, pass: string): Promise<{ access_token: string }> {
-    const user = await this.customerService.findOneByUsername(username);
-    return this.login(user, pass);
+    return this.signIn(this.customerService, username, pass);
   }
 
   async partnerSignIn(username: string, pass: string): Promise<{ access_token: string }> {
-    const user = await this.partnerService.findOneByUsername(username);
-    return this.login(user, pass);
+    return this.signIn(this.partnerService, username, pass);
   }
 
-  async login(user : User, pass: string): Promise<{ access_token: string }>{
-    if (user?.passwordHash !== pass) {
+  private async signIn(userService: UserService, username: string,  pass: string): Promise<{ access_token: string }>{
+    const user = await userService.findOneByUsername(username);
+    const isMatch = await bcrypt.compare(pass, user?.passwordHash);
+    if (!isMatch) {
       throw new UnauthorizedException();
     }
 
+    //Todo add role claims to the JWT
     const payload = { sub: user.id, username: user.email };
     return {
       access_token: await this.jwtService.signAsync(payload),
