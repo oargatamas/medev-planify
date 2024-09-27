@@ -4,7 +4,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { ApiController } from '../../shared/decorators/api.controller';
 
-@ApiController('users')
+@ApiController('customers')
 export class CustomerController {
   constructor(private readonly userService: CustomerService) {}
 
