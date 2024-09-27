@@ -5,7 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from './config/database';
 import { TourModule } from './modules/tour/tour.module';
-import { UserModule } from './modules/user/user.module';
 import { PartnerModule } from './modules/partner/partner.module';
 import { CustomerModule } from './modules/customer/customer.module';
 import { AuthModule } from './modules/auth/auth.module';
