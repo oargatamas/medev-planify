@@ -1,15 +1,8 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column } from 'typeorm';
 import { BaseEntity } from '../../../shared/entities/base.entity';
-import { Tour } from '../../tour/entities/tour.entity';
 
-@Entity('users')
-export class User extends BaseEntity{
-  @Column()
-  firstName: string;
 
-  @Column()
-  lastName: string;
-
+export abstract class User extends BaseEntity{
   @Column()
   email: string;
 
@@ -21,7 +14,4 @@ export class User extends BaseEntity{
 
   @Column()
   lastLogin: Date;
-
-  @OneToMany(() => Tour, (tour) => tour.user)
-  tours: Tour[];
 }

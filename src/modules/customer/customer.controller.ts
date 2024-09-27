@@ -1,15 +1,15 @@
 import { Body, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CustomerService } from './customer.service';
+import { CreateCustomerDto } from './dto/create-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { ApiController } from '../../shared/decorators/api.controller';
 
-@ApiController('customers')
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+@ApiController('users')
+export class CustomerController {
+  constructor(private readonly userService: CustomerService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body() createUserDto: CreateCustomerDto) {
     return this.userService.create(createUserDto);
   }
 
@@ -24,7 +24,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateCustomerDto) {
     return this.userService.update(+id, updateUserDto);
   }
 

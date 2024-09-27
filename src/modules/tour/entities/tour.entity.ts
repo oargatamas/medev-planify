@@ -4,6 +4,7 @@ import { User } from '../../user/entities/user.entity';
 import { Order } from '../../order/entities/order.entity';
 import { Document } from '../../document/entities/document.entity';
 import { TourService } from './service.entity';
+import { Customer } from '../../customer/entities/customer.entity';
 
 @Entity('tours')
 export class Tour extends BaseEntity{
@@ -16,8 +17,8 @@ export class Tour extends BaseEntity{
   @Column()
   progress: number;
 
-  @ManyToOne(() => User, (user) => user.tours)
-  user: User;
+  @ManyToOne(() => Customer, (customer) => customer.tours)
+  customer: Customer;
 
   @OneToOne(() => Order)
   @JoinColumn()
