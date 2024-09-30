@@ -3,10 +3,10 @@ import { BaseEntity } from '../../../shared/entities/base.entity';
 import { CreateUserProps } from '../interfaces/create-user-props';
 
 export abstract class User extends BaseEntity{
-  @Column()
+  @Column({unique: true})
   email: string;
 
-  @Column()
+  @Column({unique:true})
   username: string;
 
   @Column()
@@ -15,7 +15,7 @@ export abstract class User extends BaseEntity{
   @Column()
   passwordHash: string;
 
-  @Column()
+  @Column({nullable: true})
   lastLogin: Date;
 
   protected constructor(props: CreateUserProps) {
